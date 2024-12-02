@@ -45,6 +45,11 @@ func New() Service {
 	dbInstance = &service{
 		db: db,
 	}
+
+	if err := dbInstance.AutoMigrate(); err != nil {
+		log.Fatalf("Auto migration failed: %v", err)
+	}
+
 	return dbInstance
 }
 
@@ -106,4 +111,38 @@ func (s *service) Health() map[string]string {
 func (s *service) Close() error {
 	log.Printf("Disconnected from database: %s", database)
 	return s.db.Close()
+}
+
+func (s *service) AutoMigrate() error {
+	queries := []string{
+		`CREATE TABLE IF NOT EXISTS tasks (
+			id SERIAL PRIMARY KEY,
+			title VARCHAR(255) NOT NULL,
+			description TEXT,
+			status VARCHAR(50) DEFAULT 'To Do',
+			due_date DATE,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		);`,
+		`CREATE TABLE IF NOT EXISTS users (
+			id SERIAL PRIMARY KEY,
+			name VARCHAR(100) NOT NULL,
+			email VARCHAR(100) UNIQUE NOT NULL,
+			password_hash VARCHAR(255) NOT NULL,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+		);`,
+	}
+
+	for _, q := range queries {
+		_, err := s.db.Exec(q)
+		if err != nil {
+			return err
+		}
+		log.Printf("Executed query: %s", q)
+	}
+
+	log.Printf("Auto migration completed")
+
+	return nil
+			
 }
