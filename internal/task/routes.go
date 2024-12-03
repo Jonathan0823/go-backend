@@ -5,12 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRoutes(db *sql.DB) {
+func RegisterRoutes(r *gin.Engine ,db *sql.DB) {
 	repo := NewRepository(db)
 	service := NewService(repo)
 	handler := NewHandler(service)
 
-	r := gin.Default()
 
 	r.Group("/tasks")
 	{
