@@ -7,6 +7,7 @@ import (
 
 type Repository interface {
 	GetAll() ([]model.Task, error)
+	CreateTask(task model.Task) error
 }
 
 type repository struct {

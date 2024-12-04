@@ -7,6 +7,7 @@ import (
 
 type Service interface {
 	GetAll() ([]model.Task, error)
+	CreateTask(task model.Task) error
 }
 
 type service struct {

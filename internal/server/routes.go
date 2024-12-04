@@ -29,11 +29,11 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	r.GET("/health", s.healthHandler)
 
-	r.Group("task")
+	taskGroup := r.Group("/tasks")
 	{
-		r.GET("/", mainHandler.GetAll)
+		taskGroup.GET("/", mainHandler.GetAll)
+		taskGroup.POST("/", mainHandler.CreateTask)
 	}
-
 
 	return r
 }

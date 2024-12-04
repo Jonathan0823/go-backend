@@ -7,3 +7,7 @@ import (
 func (s *service) GetAll() ([]model.Task, error) {
 	return s.repo.GetAll()
 }
+
+func (s *service) CreateTask(task model.Task) error {
+	return s.repo.CreateTask(task)
+}

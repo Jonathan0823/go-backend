@@ -8,6 +8,7 @@ import (
 
 type Handler interface {
 	GetAll(c *gin.Context)
+	CreateTask(c *gin.Context)
 }
 
 type handler struct {

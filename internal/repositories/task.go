@@ -24,3 +24,12 @@ func (r *repository) GetAll() ([]model.Task, error) {
 
 	return tasks, nil
 }
+
+func (r *repository) CreateTask(task model.Task) error {
+	_, err := r.db.Exec("INSERT INTO tasks (title, description, status, due_date) VALUES ($1, $2, $3, $4)", task.Title, task.Description, task.Status, task.DueDate)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
