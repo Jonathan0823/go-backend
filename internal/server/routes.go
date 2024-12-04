@@ -21,9 +21,9 @@ func (s *Server) RegisterRoutes() http.Handler {
 		AllowCredentials: true, // Enable cookies/auth
 	}))
 
-	taskRepo := repositories.TaskRepository(s.db.GetDB())
-	taskSvc := service.TaskService(taskRepo)
-	taskHandler := handler.TaskHandler(taskSvc)
+	repo := repositories.NewRepository(s.db.GetDB())
+	svc := service.NewService(repo)
+	mainHandler := handler.NewHandler(svc)
 
 	r.GET("/", s.HelloWorldHandler)
 
@@ -31,7 +31,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 
 	r.Group("task")
 	{
-		r.GET("/", taskHandler.GetAll)
+		r.GET("/", mainHandler.GetAll)
 	}
 
 
