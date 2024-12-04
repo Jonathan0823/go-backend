@@ -1,4 +1,4 @@
-package task
+package handler
 
 import (
 	"go-backend/internal/service"
@@ -15,7 +15,7 @@ type handler struct {
 	service service.Service
 }
 
-func NewHandler(service service.Service) *handler {
+func TaskHandler(service service.Service) *handler {
 	return &handler{service}
 }
 

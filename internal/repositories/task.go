@@ -14,7 +14,7 @@ type repository struct {
 	db *sql.DB
 }
 
-func NewRepository(db *sql.DB) *repository {
+func TaskRepository(db *sql.DB) *repository {
 	return &repository{db}
 }
 
