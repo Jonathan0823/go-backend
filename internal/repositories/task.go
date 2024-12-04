@@ -1,10 +1,13 @@
-package task
+package repositories
 
-import "database/sql"
+import (
+	"database/sql"
+	"go-backend/internal/model"
+)
 
 
 type Repository interface {
-	getAll() ([]Task, error)
+	GetAll() ([]model.Task, error)
 }
 
 type repository struct {
@@ -15,16 +18,16 @@ func NewRepository(db *sql.DB) *repository {
 	return &repository{db}
 }
 
-func (r *repository) getAll() ([]Task, error) {
+func (r *repository) GetAll() ([]model.Task, error) {
 	rows, err := r.db.Query("SELECT * FROM tasks")
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var tasks []Task
+	var tasks []model.Task
 	for rows.Next() {
-		var task Task
+		var task model.Task
 		if err := rows.Scan(&task.ID, &task.Title, &task.Description, &task.Status, &task.DueDate, &task.CreatedAt, &task.UpdatedAt); err != nil {
 			return nil, err
 		}

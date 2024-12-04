@@ -1,6 +1,7 @@
 package task
 
 import (
+	"go-backend/internal/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -11,10 +12,10 @@ type Handler interface {
 }
 
 type handler struct {
-	service Service
+	service service.Service
 }
 
-func NewHandler(service Service) *handler {
+func NewHandler(service service.Service) *handler {
 	return &handler{service}
 }
 

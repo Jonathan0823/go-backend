@@ -17,6 +17,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 		AllowCredentials: true, // Enable cookies/auth
 	}))
 
+	
 
 	r.GET("/", s.HelloWorldHandler)
 
