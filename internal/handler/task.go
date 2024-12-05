@@ -39,7 +39,7 @@ func (h *handler) CreateTask(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, task)
+	c.JSON(http.StatusCreated, gin.H{"message": "Task created"})
 }
 
 func (h *handler) DeleteTask(c *gin.Context){
