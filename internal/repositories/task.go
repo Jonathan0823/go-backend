@@ -1,8 +1,25 @@
 package repositories
 
 import (
+	"database/sql"
 	"go-backend/internal/model"
 )
+
+type TaskRepository interface {
+	GetAll() ([]model.Task, error)
+	CreateTask(task model.Task) error
+	DeleteTask(id string) error
+	EditStatus(id string, status string) error
+	EditTask(task model.Task) error
+}
+
+type repository struct {
+	db *sql.DB
+}
+
+func NewTaskRepository(db *sql.DB) *repository {
+	return &repository{db}
+}
 
 
 

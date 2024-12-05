@@ -2,10 +2,19 @@ package handler
 
 import (
 	"go-backend/internal/model"
+	"go-backend/internal/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
+
+type handler struct {
+	service service.TaskService
+}
+
+func NewTaskHandler(service service.TaskService) *handler {
+	return &handler{service}
+}
 
 
 func (h *handler) GetAll(c *gin.Context) {
