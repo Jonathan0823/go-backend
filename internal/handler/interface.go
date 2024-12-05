@@ -6,12 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type Handler interface {
-	GetAll(c *gin.Context)
-	CreateTask(c *gin.Context)
-	DeleteTask(c *gin.Context)
-}
-
 type handler struct {
 	service service.Service
 }
