@@ -9,6 +9,7 @@ type Repository interface {
 	GetAll() ([]model.Task, error)
 	CreateTask(task model.Task) error
 	DeleteTask(id string) error
+	EditStatus(id string, status string) error
 }
 
 type repository struct {

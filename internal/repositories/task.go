@@ -42,3 +42,11 @@ func (r *repository) DeleteTask(id string) error {
 
 	return nil
 }
+ 
+func (r *repository) EditStatus(id string, status string) error {
+	_, err := r.db.Exec("UPDATE tasks SET status = $1 WHERE id = $2", status, id)
+	if err != nil {
+		return err
+	}
+	return nil
+}
