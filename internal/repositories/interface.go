@@ -8,6 +8,7 @@ import (
 type Repository interface {
 	GetAll() ([]model.Task, error)
 	CreateTask(task model.Task) error
+	DeleteTask(id string) error
 }
 
 type repository struct {

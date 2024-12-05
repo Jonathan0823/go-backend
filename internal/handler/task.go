@@ -32,3 +32,14 @@ func (h *handler) CreateTask(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, task)
 }
+
+func (h *handler) DeleteTask(c *gin.Context){
+	id := c.Query("id")
+
+	if err := h.service.DeleteTask(id); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, id)
+}

@@ -33,6 +33,7 @@ func (s *Server) RegisterRoutes() http.Handler {
 	{
 		taskGroup.GET("/", mainHandler.GetAll)
 		taskGroup.POST("/", mainHandler.CreateTask)
+		taskGroup.DELETE("/", mainHandler.DeleteTask)
 	}
 
 	return r

@@ -34,7 +34,7 @@ func (r *repository) CreateTask(task model.Task) error {
 	return nil
 }
 
-func (r *repository) DeleteTask(id int) error {
+func (r *repository) DeleteTask(id string) error {
 	_, err := r.db.Exec("DELETE FROM tasks WHERE id = $1", id)
 	if err != nil {
 		return err

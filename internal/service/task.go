@@ -11,3 +11,7 @@ func (s *service) GetAll() ([]model.Task, error) {
 func (s *service) CreateTask(task model.Task) error {
 	return s.repo.CreateTask(task)
 }
+
+func (s *service) DeleteTask(id string) error{
+	return s.repo.DeleteTask(id)
+}
