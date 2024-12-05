@@ -10,6 +10,7 @@ type Repository interface {
 	CreateTask(task model.Task) error
 	DeleteTask(id string) error
 	EditStatus(id string, status string) error
+	EditTask(task model.Task) error
 }
 
 type repository struct {
