@@ -146,9 +146,9 @@ func (s *service) AutoMigrate() error {
 	log.Printf("Auto migration completed")
 
 	return nil
-			
+
 }
 
-func (s *service) GetDB() *sql.DB{
-	return s.db	
+func (s *service) GetDB() *sql.DB {
+	return s.db
 }

@@ -13,7 +13,7 @@ type UserRepository interface {
 	GetUserByID(id string) (model.User, error)
 }
 
-type userrepository struct{
+type userrepository struct {
 	db *sql.DB
 }
 
